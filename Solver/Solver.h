@@ -4,8 +4,8 @@
 /// note  : 1.	
 ////////////////////////////////
 
-#ifndef SMART_SZX_GATE_ASSIGNMENT_SOLVER_H
-#define SMART_SZX_GATE_ASSIGNMENT_SOLVER_H
+#ifndef SMART_LCG_OIL_DELIVERY_SOLVER_H
+#define SMART_LCG_OIL_DELIVERY_SOLVER_H
 
 
 #include "Config.h"
@@ -205,9 +205,7 @@ public:
     Problem::Input input;
     Problem::Output output;
 
-    struct { // auxiliary data for solver.
-        List<List<bool>> isCompatible; // isCompatible[f][g] is true if flight f is compatible with gate g.
-    } aux;
+
 
     Environment env;
     Configuration cfg;
@@ -221,4 +219,4 @@ public:
 }
 
 
-#endif // SMART_SZX_GATE_ASSIGNMENT_SOLVER_H
+#endif // SMART_LCG_OIL_DELIVERY_SOLVER_H
