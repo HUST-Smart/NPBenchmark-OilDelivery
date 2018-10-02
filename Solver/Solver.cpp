@@ -210,7 +210,7 @@ void Solver::record() const {
 		<< env.randSeed << ","
 		<< cfg.toBriefStr() << ","
 		<< generation << "," << iteration << ","
-		<< 0output.sumTotal;
+		<< output.sumTotal;
 
     // record solution vector.
     // EXTEND[szx][2]: save solution in log.
@@ -232,22 +232,24 @@ void Solver::record() const {
 
 bool Solver::check(Length &checkerObj) const {
     #if SZX_DEBUG
-    enum CheckerFlag {
-        IoError = 0x0,
-        FormatError = 0x1,
-        FlightNotAssignedError = 0x2,
-        IncompatibleAssignmentError = 0x4,
-        FlightOverlapError = 0x8
-    };
+	enum CheckerFlag {
+		IoError = 0x0,
+		FormatError = 0x1,
+		VehicleDispatchError = 0x2,
+		StationOverTimeError = 0x4,
+		CabinOverVolumeError = 0x8,
+		StationOverDemandError = 0x16
+	};
 
     checkerObj = System::exec("Checker.exe " + env.instPath + " " + env.solutionPathWithTime());
     if (checkerObj > 0) { return true; }
     checkerObj = ~checkerObj;
     if (checkerObj == CheckerFlag::IoError) { Log(LogSwitch::Checker) << "IoError." << endl; }
     if (checkerObj & CheckerFlag::FormatError) { Log(LogSwitch::Checker) << "FormatError." << endl; }
-    if (checkerObj & CheckerFlag::FlightNotAssignedError) { Log(LogSwitch::Checker) << "FlightNotAssignedError." << endl; }
-    if (checkerObj & CheckerFlag::IncompatibleAssignmentError) { Log(LogSwitch::Checker) << "IncompatibleAssignmentError." << endl; }
-    if (checkerObj & CheckerFlag::FlightOverlapError) { Log(LogSwitch::Checker) << "FlightOverlapError." << endl; }
+    if (checkerObj & CheckerFlag::VehicleDispatchError) { Log(LogSwitch::Checker) << "VehicleDispatchError." << endl; }
+    if (checkerObj & CheckerFlag::StationOverTimeError) { Log(LogSwitch::Checker) << "StationOverTimeError." << endl; }
+    if (checkerObj & CheckerFlag::CabinOverVolumeError) { Log(LogSwitch::Checker) << "CabinOverVolumeError." << endl; }
+	if (checkerObj & CheckerFlag::StationOverDemandError) { Log(LogSwitch::Checker) << "StationOverDemandError." << endl; }
     return false;
     #else
     checkerObj = 0;
@@ -256,21 +258,63 @@ bool Solver::check(Length &checkerObj) const {
 }
 
 void Solver::init() {
-    
+	periodNumber = 4;
+}
+
+int Solver::vehicleVolume(const pb::OilDelivery_Vehicle& vehicle) {
+	int volume = 0;
+	for (auto cabin : vehicle.cabins()) {
+		volume += cabin.volume();
+	}
+	return volume;
 }
 
 bool Solver::optimize(Solution &sln, ID workerId) {
-    Log(LogSwitch::Szx::Framework) << "worker " << workerId << " starts." << endl;
+	Log(LogSwitch::Szx::Framework) << "worker " << workerId << " starts." << endl;
 
+	ID stationNumber = input.gasstations_size();
 
+	bool status = true;
+	auto &deliveries(*sln.mutable_deliveries());
+	deliveries.Reserve(periodNumber);
+	sln.sumTotal = 0.0;
 
+	// TODO[0]: replace the following random assignment with your own algorithm.
+	for (int i = 0; !timer.isTimeOut() && (i < periodNumber); ++i) {
 
-    // TODO[0]: replace the following random assignment with your own algorithm.
+		deliveries[i].mutable_vehicles = { input.vehicles().begin(),input.vehicles().end() };
+		for (auto vehicle : deliveries[i].vehicles()) {
+			// intermediate variables to count objective `sumTotal`
+			double vehicleValue = 0.0, fullLoadRate = 0.0, loadSharing = 0.0;
+			int vehicleLoad = 0, maxStationId = 0, minStationId = 0;
 
+			for (auto cabin : vehicle.cabins()) {
+				int stationId = rand.pick(stationNumber);
+				int demand = input.gasstations()[stationId].demandvalues()[i].demand();
+				int value = input.gasstations()[stationId].demandvalues()[i].value();
+				int load = cabin.volume() > demand ? demand : cabin.volume();
+				cabin.set_stationid(stationId);
+				cabin.set_load(rand.pick(load));
 
+				// total value loaded by a vehicle
+				vehicleValue += load * value / demand;
+				// loadage of a vehicle
+				vehicleLoad += load;
+				// max and min station id
+				if (stationId > maxStationId) { maxStationId = stationId; }
+				if (stationId < minStationId) { minStationId = stationId; }
+			}
+			// full load rate
+			fullLoadRate = vehicleLoad / vehicleVolume(vehicle);
+			// load sharing
+			loadSharing = (vehicle.cabins_size()) / (vehicle.cabins_size() + maxStationId - minStationId);
+			// sum value of all vehicles in all periods
+			sln.sumTotal += vehicleValue * fullLoadRate * loadSharing;
+		}
+	}
 
-    Log(LogSwitch::Szx::Framework) << "worker " << workerId << " ends." << endl;
-
+	Log(LogSwitch::Szx::Framework) << "worker " << workerId << " ends." << endl;
+	return status;
 }
 #pragma endregion Solver
 
