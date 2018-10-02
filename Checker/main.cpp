@@ -72,7 +72,7 @@ int main(int argc, char *argv[]) {
 	double sumTotal = 0.0;	// objective
 
 	int stationNumber = input.gasstations_size();
-	int *oilSum = new int[stationNumber]{ 0 };						// oilSum[i]: sum of oil deliveried to gas station i
+	int *oilSum = new int[stationNumber]{ 0 };			// oilSum[i]: sum of oil deliveried to gas station i
 	int *deliveriedTimes = new int[stationNumber * PeriodNum]{ 0 };	// deliveried times of each station in all periods
 
 	if (output.deliveries_size() != PeriodNum) { error |= CheckerFlag::FormatError; }
