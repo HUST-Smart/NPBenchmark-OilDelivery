@@ -21,10 +21,12 @@
 
 namespace protobuf_OilDelivery_2eproto {
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_OilDelivery_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_OilDelivery_Cabin;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_OilDelivery_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_OilDelivery_CabinDelivery;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_OilDelivery_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_OilDelivery_GasStation_DemandValue;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_OilDelivery_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_OilDelivery_GasStation;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_OilDelivery_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_OilDelivery_Output_Delivery;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_OilDelivery_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_OilDelivery_Vehicle;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_OilDelivery_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_OilDelivery_VehicleDelivery;
 }  // namespace protobuf_OilDelivery_2eproto
 namespace pb {
 class OilDelivery_InputDefaultTypeInternal {
@@ -62,6 +64,16 @@ class OilDelivery_CabinDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<OilDelivery_Cabin>
       _instance;
 } _OilDelivery_Cabin_default_instance_;
+class OilDelivery_VehicleDeliveryDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<OilDelivery_VehicleDelivery>
+      _instance;
+} _OilDelivery_VehicleDelivery_default_instance_;
+class OilDelivery_CabinDeliveryDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<OilDelivery_CabinDelivery>
+      _instance;
+} _OilDelivery_CabinDelivery_default_instance_;
 class OilDelivery_SubmissionDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<OilDelivery_Submission>
@@ -103,7 +115,7 @@ static void InitDefaultsOilDelivery_Output_Delivery() {
 
 ::google::protobuf::internal::SCCInfo<1> scc_info_OilDelivery_Output_Delivery =
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsOilDelivery_Output_Delivery}, {
-      &protobuf_OilDelivery_2eproto::scc_info_OilDelivery_Vehicle.base,}};
+      &protobuf_OilDelivery_2eproto::scc_info_OilDelivery_VehicleDelivery.base,}};
 
 static void InitDefaultsOilDelivery_Output() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -178,6 +190,35 @@ static void InitDefaultsOilDelivery_Cabin() {
 ::google::protobuf::internal::SCCInfo<0> scc_info_OilDelivery_Cabin =
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsOilDelivery_Cabin}, {}};
 
+static void InitDefaultsOilDelivery_VehicleDelivery() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::pb::_OilDelivery_VehicleDelivery_default_instance_;
+    new (ptr) ::pb::OilDelivery_VehicleDelivery();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::pb::OilDelivery_VehicleDelivery::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<1> scc_info_OilDelivery_VehicleDelivery =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsOilDelivery_VehicleDelivery}, {
+      &protobuf_OilDelivery_2eproto::scc_info_OilDelivery_CabinDelivery.base,}};
+
+static void InitDefaultsOilDelivery_CabinDelivery() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::pb::_OilDelivery_CabinDelivery_default_instance_;
+    new (ptr) ::pb::OilDelivery_CabinDelivery();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::pb::OilDelivery_CabinDelivery::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<0> scc_info_OilDelivery_CabinDelivery =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsOilDelivery_CabinDelivery}, {}};
+
 static void InitDefaultsOilDelivery_Submission() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -214,11 +255,13 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_OilDelivery_GasStation.base);
   ::google::protobuf::internal::InitSCC(&scc_info_OilDelivery_Vehicle.base);
   ::google::protobuf::internal::InitSCC(&scc_info_OilDelivery_Cabin.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_OilDelivery_VehicleDelivery.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_OilDelivery_CabinDelivery.base);
   ::google::protobuf::internal::InitSCC(&scc_info_OilDelivery_Submission.base);
   ::google::protobuf::internal::InitSCC(&scc_info_OilDelivery.base);
 }
 
-::google::protobuf::Metadata file_level_metadata[9];
+::google::protobuf::Metadata file_level_metadata[11];
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
@@ -233,7 +276,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::OilDelivery_Output_Delivery, vehicles_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::OilDelivery_Output_Delivery, vehicledeliveries_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::OilDelivery_Output, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -260,7 +303,6 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::OilDelivery_Vehicle, id_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::OilDelivery_Vehicle, name_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::OilDelivery_Vehicle, cabins_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::OilDelivery_Cabin, _internal_metadata_),
@@ -268,10 +310,22 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::OilDelivery_Cabin, id_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::OilDelivery_Cabin, vehicleid_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::OilDelivery_Cabin, volume_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::OilDelivery_Cabin, load_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::OilDelivery_Cabin, stationid_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::OilDelivery_VehicleDelivery, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::OilDelivery_VehicleDelivery, id_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::OilDelivery_VehicleDelivery, cabindeliveries_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::OilDelivery_CabinDelivery, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::OilDelivery_CabinDelivery, id_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::OilDelivery_CabinDelivery, stationid_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::OilDelivery_CabinDelivery, quantity_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::OilDelivery_Submission, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -304,9 +358,11 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROT
   { 19, -1, sizeof(::pb::OilDelivery_GasStation_DemandValue)},
   { 26, -1, sizeof(::pb::OilDelivery_GasStation)},
   { 33, -1, sizeof(::pb::OilDelivery_Vehicle)},
-  { 41, -1, sizeof(::pb::OilDelivery_Cabin)},
-  { 51, -1, sizeof(::pb::OilDelivery_Submission)},
-  { 70, -1, sizeof(::pb::OilDelivery)},
+  { 40, -1, sizeof(::pb::OilDelivery_Cabin)},
+  { 47, -1, sizeof(::pb::OilDelivery_VehicleDelivery)},
+  { 54, -1, sizeof(::pb::OilDelivery_CabinDelivery)},
+  { 62, -1, sizeof(::pb::OilDelivery_Submission)},
+  { 81, -1, sizeof(::pb::OilDelivery)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -317,6 +373,8 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&::pb::_OilDelivery_GasStation_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::pb::_OilDelivery_Vehicle_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::pb::_OilDelivery_Cabin_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::pb::_OilDelivery_VehicleDelivery_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::pb::_OilDelivery_CabinDelivery_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::pb::_OilDelivery_Submission_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::pb::_OilDelivery_default_instance_),
 };
@@ -336,36 +394,38 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_PROTOBUF_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 9);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 11);
 }
 
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-      "\n\021OilDelivery.proto\022\002pb\"\377\005\n\013OilDelivery\032"
+      "\n\021OilDelivery.proto\022\002pb\"\350\006\n\013OilDelivery\032"
       "c\n\005Input\022/\n\013gasStations\030\001 \003(\0132\032.pb.OilDe"
       "livery.GasStation\022)\n\010vehicles\030\002 \003(\0132\027.pb"
-      ".OilDelivery.Vehicle\032t\n\006Output\0223\n\ndelive"
-      "ries\030\001 \003(\0132\037.pb.OilDelivery.Output.Deliv"
-      "ery\0325\n\010Delivery\022)\n\010vehicles\030\001 \003(\0132\027.pb.O"
-      "ilDelivery.Vehicle\032\204\001\n\nGasStation\022\n\n\002id\030"
-      "\001 \001(\005\022<\n\014demandValues\030\002 \003(\0132&.pb.OilDeli"
-      "very.GasStation.DemandValue\032,\n\013DemandVal"
-      "ue\022\016\n\006demand\030\001 \001(\005\022\r\n\005value\030\002 \001(\005\032J\n\007Veh"
-      "icle\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022%\n\006cabins"
-      "\030\003 \003(\0132\025.pb.OilDelivery.Cabin\032W\n\005Cabin\022\n"
-      "\n\002id\030\001 \001(\005\022\021\n\tvehicleId\030\002 \001(\005\022\016\n\006volume\030"
-      "\003 \001(\005\022\014\n\004load\030\004 \001(\005\022\021\n\tstationId\030\005 \001(\005\032\350"
-      "\001\n\nSubmission\022\016\n\006author\030\001 \001(\t\022\021\n\talgorit"
-      "hm\030\002 \001(\t\022\016\n\006thread\030\003 \001(\t\022\013\n\003cpu\030\004 \001(\t\022\013\n"
-      "\003ram\030\005 \001(\t\022\020\n\010language\030\006 \001(\t\022\020\n\010compiler"
-      "\030\007 \001(\t\022\n\n\002os\030\010 \001(\t\022\017\n\007problem\030\025 \001(\t\022\020\n\010i"
-      "nstance\030\026 \001(\t\022\020\n\010duration\030\027 \001(\t\022\013\n\003obj\030\037"
-      " \001(\001\022\r\n\005email\030  \001(\t\022\014\n\004date\030! \001(\tb\006proto"
-      "3"
+      ".OilDelivery.Vehicle\032\205\001\n\006Output\0223\n\ndeliv"
+      "eries\030\001 \003(\0132\037.pb.OilDelivery.Output.Deli"
+      "very\032F\n\010Delivery\022:\n\021vehicleDeliveries\030\001 "
+      "\003(\0132\037.pb.OilDelivery.VehicleDelivery\032\204\001\n"
+      "\nGasStation\022\n\n\002id\030\001 \001(\005\022<\n\014demandValues\030"
+      "\002 \003(\0132&.pb.OilDelivery.GasStation.Demand"
+      "Value\032,\n\013DemandValue\022\016\n\006demand\030\001 \001(\005\022\r\n\005"
+      "value\030\002 \001(\005\032<\n\007Vehicle\022\n\n\002id\030\001 \001(\005\022%\n\006ca"
+      "bins\030\002 \003(\0132\025.pb.OilDelivery.Cabin\032#\n\005Cab"
+      "in\022\n\n\002id\030\001 \001(\005\022\016\n\006volume\030\002 \001(\005\032U\n\017Vehicl"
+      "eDelivery\022\n\n\002id\030\001 \001(\005\0226\n\017cabinDeliveries"
+      "\030\002 \003(\0132\035.pb.OilDelivery.CabinDelivery\032@\n"
+      "\rCabinDelivery\022\n\n\002id\030\001 \001(\005\022\021\n\tstationId\030"
+      "\002 \001(\005\022\020\n\010quantity\030\003 \001(\005\032\350\001\n\nSubmission\022\016"
+      "\n\006author\030\001 \001(\t\022\021\n\talgorithm\030\002 \001(\t\022\016\n\006thr"
+      "ead\030\003 \001(\t\022\013\n\003cpu\030\004 \001(\t\022\013\n\003ram\030\005 \001(\t\022\020\n\010l"
+      "anguage\030\006 \001(\t\022\020\n\010compiler\030\007 \001(\t\022\n\n\002os\030\010 "
+      "\001(\t\022\017\n\007problem\030\025 \001(\t\022\020\n\010instance\030\026 \001(\t\022\020"
+      "\n\010duration\030\027 \001(\t\022\013\n\003obj\030\037 \001(\001\022\r\n\005email\030 "
+      " \001(\t\022\014\n\004date\030! \001(\tb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 801);
+      descriptor, 906);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "OilDelivery.proto", &protobuf_RegisterTypes);
 }
@@ -662,7 +722,7 @@ void OilDelivery_Input::InternalSwap(OilDelivery_Input* other) {
 void OilDelivery_Output_Delivery::InitAsDefaultInstance() {
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int OilDelivery_Output_Delivery::kVehiclesFieldNumber;
+const int OilDelivery_Output_Delivery::kVehicleDeliveriesFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 OilDelivery_Output_Delivery::OilDelivery_Output_Delivery()
@@ -675,7 +735,7 @@ OilDelivery_Output_Delivery::OilDelivery_Output_Delivery()
 OilDelivery_Output_Delivery::OilDelivery_Output_Delivery(const OilDelivery_Output_Delivery& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(NULL),
-      vehicles_(from.vehicles_) {
+      vehicledeliveries_(from.vehicledeliveries_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:pb.OilDelivery.Output.Delivery)
 }
@@ -711,7 +771,7 @@ void OilDelivery_Output_Delivery::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  vehicles_.Clear();
+  vehicledeliveries_.Clear();
   _internal_metadata_.Clear();
 }
 
@@ -725,12 +785,12 @@ bool OilDelivery_Output_Delivery::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .pb.OilDelivery.Vehicle vehicles = 1;
+      // repeated .pb.OilDelivery.VehicleDelivery vehicleDeliveries = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-                input, add_vehicles()));
+                input, add_vehicledeliveries()));
         } else {
           goto handle_unusual;
         }
@@ -763,12 +823,12 @@ void OilDelivery_Output_Delivery::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .pb.OilDelivery.Vehicle vehicles = 1;
+  // repeated .pb.OilDelivery.VehicleDelivery vehicleDeliveries = 1;
   for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->vehicles_size()); i < n; i++) {
+      n = static_cast<unsigned int>(this->vehicledeliveries_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1,
-      this->vehicles(static_cast<int>(i)),
+      this->vehicledeliveries(static_cast<int>(i)),
       output);
   }
 
@@ -786,12 +846,12 @@ void OilDelivery_Output_Delivery::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .pb.OilDelivery.Vehicle vehicles = 1;
+  // repeated .pb.OilDelivery.VehicleDelivery vehicleDeliveries = 1;
   for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->vehicles_size()); i < n; i++) {
+      n = static_cast<unsigned int>(this->vehicledeliveries_size()); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageToArray(
-        1, this->vehicles(static_cast<int>(i)), deterministic, target);
+        1, this->vehicledeliveries(static_cast<int>(i)), deterministic, target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -811,14 +871,14 @@ size_t OilDelivery_Output_Delivery::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // repeated .pb.OilDelivery.Vehicle vehicles = 1;
+  // repeated .pb.OilDelivery.VehicleDelivery vehicleDeliveries = 1;
   {
-    unsigned int count = static_cast<unsigned int>(this->vehicles_size());
+    unsigned int count = static_cast<unsigned int>(this->vehicledeliveries_size());
     total_size += 1UL * count;
     for (unsigned int i = 0; i < count; i++) {
       total_size +=
         ::google::protobuf::internal::WireFormatLite::MessageSize(
-          this->vehicles(static_cast<int>(i)));
+          this->vehicledeliveries(static_cast<int>(i)));
     }
   }
 
@@ -849,7 +909,7 @@ void OilDelivery_Output_Delivery::MergeFrom(const OilDelivery_Output_Delivery& f
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  vehicles_.MergeFrom(from.vehicles_);
+  vehicledeliveries_.MergeFrom(from.vehicledeliveries_);
 }
 
 void OilDelivery_Output_Delivery::CopyFrom(const ::google::protobuf::Message& from) {
@@ -876,7 +936,7 @@ void OilDelivery_Output_Delivery::Swap(OilDelivery_Output_Delivery* other) {
 }
 void OilDelivery_Output_Delivery::InternalSwap(OilDelivery_Output_Delivery* other) {
   using std::swap;
-  CastToBase(&vehicles_)->InternalSwap(CastToBase(&other->vehicles_));
+  CastToBase(&vehicledeliveries_)->InternalSwap(CastToBase(&other->vehicledeliveries_));
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
@@ -1654,7 +1714,6 @@ void OilDelivery_Vehicle::InitAsDefaultInstance() {
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int OilDelivery_Vehicle::kIdFieldNumber;
-const int OilDelivery_Vehicle::kNameFieldNumber;
 const int OilDelivery_Vehicle::kCabinsFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
@@ -1670,16 +1729,11 @@ OilDelivery_Vehicle::OilDelivery_Vehicle(const OilDelivery_Vehicle& from)
       _internal_metadata_(NULL),
       cabins_(from.cabins_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.name().size() > 0) {
-    name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
-  }
   id_ = from.id_;
   // @@protoc_insertion_point(copy_constructor:pb.OilDelivery.Vehicle)
 }
 
 void OilDelivery_Vehicle::SharedCtor() {
-  name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   id_ = 0;
 }
 
@@ -1689,7 +1743,6 @@ OilDelivery_Vehicle::~OilDelivery_Vehicle() {
 }
 
 void OilDelivery_Vehicle::SharedDtor() {
-  name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
 void OilDelivery_Vehicle::SetCachedSize(int size) const {
@@ -1713,7 +1766,6 @@ void OilDelivery_Vehicle::Clear() {
   (void) cached_has_bits;
 
   cabins_.Clear();
-  name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   id_ = 0;
   _internal_metadata_.Clear();
 }
@@ -1742,26 +1794,10 @@ bool OilDelivery_Vehicle::MergePartialFromCodedStream(
         break;
       }
 
-      // string name = 2;
+      // repeated .pb.OilDelivery.Cabin cabins = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_name()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->name().data(), static_cast<int>(this->name().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "pb.OilDelivery.Vehicle.name"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // repeated .pb.OilDelivery.Cabin cabins = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
                 input, add_cabins()));
         } else {
@@ -1801,21 +1837,11 @@ void OilDelivery_Vehicle::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->id(), output);
   }
 
-  // string name = 2;
-  if (this->name().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->name().data(), static_cast<int>(this->name().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "pb.OilDelivery.Vehicle.name");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      2, this->name(), output);
-  }
-
-  // repeated .pb.OilDelivery.Cabin cabins = 3;
+  // repeated .pb.OilDelivery.Cabin cabins = 2;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->cabins_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      3,
+      2,
       this->cabins(static_cast<int>(i)),
       output);
   }
@@ -1839,23 +1865,12 @@ void OilDelivery_Vehicle::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->id(), target);
   }
 
-  // string name = 2;
-  if (this->name().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->name().data(), static_cast<int>(this->name().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "pb.OilDelivery.Vehicle.name");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->name(), target);
-  }
-
-  // repeated .pb.OilDelivery.Cabin cabins = 3;
+  // repeated .pb.OilDelivery.Cabin cabins = 2;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->cabins_size()); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageToArray(
-        3, this->cabins(static_cast<int>(i)), deterministic, target);
+        2, this->cabins(static_cast<int>(i)), deterministic, target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -1875,7 +1890,7 @@ size_t OilDelivery_Vehicle::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // repeated .pb.OilDelivery.Cabin cabins = 3;
+  // repeated .pb.OilDelivery.Cabin cabins = 2;
   {
     unsigned int count = static_cast<unsigned int>(this->cabins_size());
     total_size += 1UL * count;
@@ -1884,13 +1899,6 @@ size_t OilDelivery_Vehicle::ByteSizeLong() const {
         ::google::protobuf::internal::WireFormatLite::MessageSize(
           this->cabins(static_cast<int>(i)));
     }
-  }
-
-  // string name = 2;
-  if (this->name().size() > 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->name());
   }
 
   // int32 id = 1;
@@ -1928,10 +1936,6 @@ void OilDelivery_Vehicle::MergeFrom(const OilDelivery_Vehicle& from) {
   (void) cached_has_bits;
 
   cabins_.MergeFrom(from.cabins_);
-  if (from.name().size() > 0) {
-
-    name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
-  }
   if (from.id() != 0) {
     set_id(from.id());
   }
@@ -1962,8 +1966,6 @@ void OilDelivery_Vehicle::Swap(OilDelivery_Vehicle* other) {
 void OilDelivery_Vehicle::InternalSwap(OilDelivery_Vehicle* other) {
   using std::swap;
   CastToBase(&cabins_)->InternalSwap(CastToBase(&other->cabins_));
-  name_.Swap(&other->name_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
   swap(id_, other->id_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
@@ -1980,10 +1982,7 @@ void OilDelivery_Cabin::InitAsDefaultInstance() {
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int OilDelivery_Cabin::kIdFieldNumber;
-const int OilDelivery_Cabin::kVehicleIdFieldNumber;
 const int OilDelivery_Cabin::kVolumeFieldNumber;
-const int OilDelivery_Cabin::kLoadFieldNumber;
-const int OilDelivery_Cabin::kStationIdFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 OilDelivery_Cabin::OilDelivery_Cabin()
@@ -1998,15 +1997,15 @@ OilDelivery_Cabin::OilDelivery_Cabin(const OilDelivery_Cabin& from)
       _internal_metadata_(NULL) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::memcpy(&id_, &from.id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&stationid_) -
-    reinterpret_cast<char*>(&id_)) + sizeof(stationid_));
+    static_cast<size_t>(reinterpret_cast<char*>(&volume_) -
+    reinterpret_cast<char*>(&id_)) + sizeof(volume_));
   // @@protoc_insertion_point(copy_constructor:pb.OilDelivery.Cabin)
 }
 
 void OilDelivery_Cabin::SharedCtor() {
   ::memset(&id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&stationid_) -
-      reinterpret_cast<char*>(&id_)) + sizeof(stationid_));
+      reinterpret_cast<char*>(&volume_) -
+      reinterpret_cast<char*>(&id_)) + sizeof(volume_));
 }
 
 OilDelivery_Cabin::~OilDelivery_Cabin() {
@@ -2038,8 +2037,8 @@ void OilDelivery_Cabin::Clear() {
   (void) cached_has_bits;
 
   ::memset(&id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&stationid_) -
-      reinterpret_cast<char*>(&id_)) + sizeof(stationid_));
+      reinterpret_cast<char*>(&volume_) -
+      reinterpret_cast<char*>(&id_)) + sizeof(volume_));
   _internal_metadata_.Clear();
 }
 
@@ -2067,56 +2066,14 @@ bool OilDelivery_Cabin::MergePartialFromCodedStream(
         break;
       }
 
-      // int32 vehicleId = 2;
+      // int32 volume = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &vehicleid_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // int32 volume = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &volume_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // int32 load = 4;
-      case 4: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(32u /* 32 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &load_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // int32 stationId = 5;
-      case 5: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(40u /* 40 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &stationid_)));
         } else {
           goto handle_unusual;
         }
@@ -2154,24 +2111,9 @@ void OilDelivery_Cabin::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->id(), output);
   }
 
-  // int32 vehicleId = 2;
-  if (this->vehicleid() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->vehicleid(), output);
-  }
-
-  // int32 volume = 3;
+  // int32 volume = 2;
   if (this->volume() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->volume(), output);
-  }
-
-  // int32 load = 4;
-  if (this->load() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->load(), output);
-  }
-
-  // int32 stationId = 5;
-  if (this->stationid() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->stationid(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->volume(), output);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -2193,24 +2135,9 @@ void OilDelivery_Cabin::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->id(), target);
   }
 
-  // int32 vehicleId = 2;
-  if (this->vehicleid() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->vehicleid(), target);
-  }
-
-  // int32 volume = 3;
+  // int32 volume = 2;
   if (this->volume() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->volume(), target);
-  }
-
-  // int32 load = 4;
-  if (this->load() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->load(), target);
-  }
-
-  // int32 stationId = 5;
-  if (this->stationid() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->stationid(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->volume(), target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -2237,32 +2164,11 @@ size_t OilDelivery_Cabin::ByteSizeLong() const {
         this->id());
   }
 
-  // int32 vehicleId = 2;
-  if (this->vehicleid() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->vehicleid());
-  }
-
-  // int32 volume = 3;
+  // int32 volume = 2;
   if (this->volume() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->volume());
-  }
-
-  // int32 load = 4;
-  if (this->load() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->load());
-  }
-
-  // int32 stationId = 5;
-  if (this->stationid() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->stationid());
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -2295,17 +2201,8 @@ void OilDelivery_Cabin::MergeFrom(const OilDelivery_Cabin& from) {
   if (from.id() != 0) {
     set_id(from.id());
   }
-  if (from.vehicleid() != 0) {
-    set_vehicleid(from.vehicleid());
-  }
   if (from.volume() != 0) {
     set_volume(from.volume());
-  }
-  if (from.load() != 0) {
-    set_load(from.load());
-  }
-  if (from.stationid() != 0) {
-    set_stationid(from.stationid());
   }
 }
 
@@ -2334,14 +2231,580 @@ void OilDelivery_Cabin::Swap(OilDelivery_Cabin* other) {
 void OilDelivery_Cabin::InternalSwap(OilDelivery_Cabin* other) {
   using std::swap;
   swap(id_, other->id_);
-  swap(vehicleid_, other->vehicleid_);
   swap(volume_, other->volume_);
-  swap(load_, other->load_);
-  swap(stationid_, other->stationid_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
 ::google::protobuf::Metadata OilDelivery_Cabin::GetMetadata() const {
+  protobuf_OilDelivery_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_OilDelivery_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+
+// ===================================================================
+
+void OilDelivery_VehicleDelivery::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int OilDelivery_VehicleDelivery::kIdFieldNumber;
+const int OilDelivery_VehicleDelivery::kCabinDeliveriesFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+OilDelivery_VehicleDelivery::OilDelivery_VehicleDelivery()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_OilDelivery_2eproto::scc_info_OilDelivery_VehicleDelivery.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:pb.OilDelivery.VehicleDelivery)
+}
+OilDelivery_VehicleDelivery::OilDelivery_VehicleDelivery(const OilDelivery_VehicleDelivery& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      cabindeliveries_(from.cabindeliveries_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  id_ = from.id_;
+  // @@protoc_insertion_point(copy_constructor:pb.OilDelivery.VehicleDelivery)
+}
+
+void OilDelivery_VehicleDelivery::SharedCtor() {
+  id_ = 0;
+}
+
+OilDelivery_VehicleDelivery::~OilDelivery_VehicleDelivery() {
+  // @@protoc_insertion_point(destructor:pb.OilDelivery.VehicleDelivery)
+  SharedDtor();
+}
+
+void OilDelivery_VehicleDelivery::SharedDtor() {
+}
+
+void OilDelivery_VehicleDelivery::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ::google::protobuf::Descriptor* OilDelivery_VehicleDelivery::descriptor() {
+  ::protobuf_OilDelivery_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_OilDelivery_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const OilDelivery_VehicleDelivery& OilDelivery_VehicleDelivery::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_OilDelivery_2eproto::scc_info_OilDelivery_VehicleDelivery.base);
+  return *internal_default_instance();
+}
+
+
+void OilDelivery_VehicleDelivery::Clear() {
+// @@protoc_insertion_point(message_clear_start:pb.OilDelivery.VehicleDelivery)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cabindeliveries_.Clear();
+  id_ = 0;
+  _internal_metadata_.Clear();
+}
+
+bool OilDelivery_VehicleDelivery::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:pb.OilDelivery.VehicleDelivery)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // int32 id = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &id_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // repeated .pb.OilDelivery.CabinDelivery cabinDeliveries = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+                input, add_cabindeliveries()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:pb.OilDelivery.VehicleDelivery)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:pb.OilDelivery.VehicleDelivery)
+  return false;
+#undef DO_
+}
+
+void OilDelivery_VehicleDelivery::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:pb.OilDelivery.VehicleDelivery)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 id = 1;
+  if (this->id() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->id(), output);
+  }
+
+  // repeated .pb.OilDelivery.CabinDelivery cabinDeliveries = 2;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->cabindeliveries_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      2,
+      this->cabindeliveries(static_cast<int>(i)),
+      output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:pb.OilDelivery.VehicleDelivery)
+}
+
+::google::protobuf::uint8* OilDelivery_VehicleDelivery::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:pb.OilDelivery.VehicleDelivery)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 id = 1;
+  if (this->id() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->id(), target);
+  }
+
+  // repeated .pb.OilDelivery.CabinDelivery cabinDeliveries = 2;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->cabindeliveries_size()); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        2, this->cabindeliveries(static_cast<int>(i)), deterministic, target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:pb.OilDelivery.VehicleDelivery)
+  return target;
+}
+
+size_t OilDelivery_VehicleDelivery::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:pb.OilDelivery.VehicleDelivery)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // repeated .pb.OilDelivery.CabinDelivery cabinDeliveries = 2;
+  {
+    unsigned int count = static_cast<unsigned int>(this->cabindeliveries_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->cabindeliveries(static_cast<int>(i)));
+    }
+  }
+
+  // int32 id = 1;
+  if (this->id() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->id());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void OilDelivery_VehicleDelivery::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:pb.OilDelivery.VehicleDelivery)
+  GOOGLE_DCHECK_NE(&from, this);
+  const OilDelivery_VehicleDelivery* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const OilDelivery_VehicleDelivery>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:pb.OilDelivery.VehicleDelivery)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:pb.OilDelivery.VehicleDelivery)
+    MergeFrom(*source);
+  }
+}
+
+void OilDelivery_VehicleDelivery::MergeFrom(const OilDelivery_VehicleDelivery& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:pb.OilDelivery.VehicleDelivery)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cabindeliveries_.MergeFrom(from.cabindeliveries_);
+  if (from.id() != 0) {
+    set_id(from.id());
+  }
+}
+
+void OilDelivery_VehicleDelivery::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:pb.OilDelivery.VehicleDelivery)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void OilDelivery_VehicleDelivery::CopyFrom(const OilDelivery_VehicleDelivery& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:pb.OilDelivery.VehicleDelivery)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool OilDelivery_VehicleDelivery::IsInitialized() const {
+  return true;
+}
+
+void OilDelivery_VehicleDelivery::Swap(OilDelivery_VehicleDelivery* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void OilDelivery_VehicleDelivery::InternalSwap(OilDelivery_VehicleDelivery* other) {
+  using std::swap;
+  CastToBase(&cabindeliveries_)->InternalSwap(CastToBase(&other->cabindeliveries_));
+  swap(id_, other->id_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::google::protobuf::Metadata OilDelivery_VehicleDelivery::GetMetadata() const {
+  protobuf_OilDelivery_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_OilDelivery_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+
+// ===================================================================
+
+void OilDelivery_CabinDelivery::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int OilDelivery_CabinDelivery::kIdFieldNumber;
+const int OilDelivery_CabinDelivery::kStationIdFieldNumber;
+const int OilDelivery_CabinDelivery::kQuantityFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+OilDelivery_CabinDelivery::OilDelivery_CabinDelivery()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_OilDelivery_2eproto::scc_info_OilDelivery_CabinDelivery.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:pb.OilDelivery.CabinDelivery)
+}
+OilDelivery_CabinDelivery::OilDelivery_CabinDelivery(const OilDelivery_CabinDelivery& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&id_, &from.id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&quantity_) -
+    reinterpret_cast<char*>(&id_)) + sizeof(quantity_));
+  // @@protoc_insertion_point(copy_constructor:pb.OilDelivery.CabinDelivery)
+}
+
+void OilDelivery_CabinDelivery::SharedCtor() {
+  ::memset(&id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&quantity_) -
+      reinterpret_cast<char*>(&id_)) + sizeof(quantity_));
+}
+
+OilDelivery_CabinDelivery::~OilDelivery_CabinDelivery() {
+  // @@protoc_insertion_point(destructor:pb.OilDelivery.CabinDelivery)
+  SharedDtor();
+}
+
+void OilDelivery_CabinDelivery::SharedDtor() {
+}
+
+void OilDelivery_CabinDelivery::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ::google::protobuf::Descriptor* OilDelivery_CabinDelivery::descriptor() {
+  ::protobuf_OilDelivery_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_OilDelivery_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const OilDelivery_CabinDelivery& OilDelivery_CabinDelivery::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_OilDelivery_2eproto::scc_info_OilDelivery_CabinDelivery.base);
+  return *internal_default_instance();
+}
+
+
+void OilDelivery_CabinDelivery::Clear() {
+// @@protoc_insertion_point(message_clear_start:pb.OilDelivery.CabinDelivery)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&quantity_) -
+      reinterpret_cast<char*>(&id_)) + sizeof(quantity_));
+  _internal_metadata_.Clear();
+}
+
+bool OilDelivery_CabinDelivery::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:pb.OilDelivery.CabinDelivery)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // int32 id = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &id_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int32 stationId = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &stationid_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int32 quantity = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &quantity_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:pb.OilDelivery.CabinDelivery)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:pb.OilDelivery.CabinDelivery)
+  return false;
+#undef DO_
+}
+
+void OilDelivery_CabinDelivery::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:pb.OilDelivery.CabinDelivery)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 id = 1;
+  if (this->id() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->id(), output);
+  }
+
+  // int32 stationId = 2;
+  if (this->stationid() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->stationid(), output);
+  }
+
+  // int32 quantity = 3;
+  if (this->quantity() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->quantity(), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:pb.OilDelivery.CabinDelivery)
+}
+
+::google::protobuf::uint8* OilDelivery_CabinDelivery::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:pb.OilDelivery.CabinDelivery)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 id = 1;
+  if (this->id() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->id(), target);
+  }
+
+  // int32 stationId = 2;
+  if (this->stationid() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->stationid(), target);
+  }
+
+  // int32 quantity = 3;
+  if (this->quantity() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->quantity(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:pb.OilDelivery.CabinDelivery)
+  return target;
+}
+
+size_t OilDelivery_CabinDelivery::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:pb.OilDelivery.CabinDelivery)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // int32 id = 1;
+  if (this->id() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->id());
+  }
+
+  // int32 stationId = 2;
+  if (this->stationid() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->stationid());
+  }
+
+  // int32 quantity = 3;
+  if (this->quantity() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->quantity());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void OilDelivery_CabinDelivery::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:pb.OilDelivery.CabinDelivery)
+  GOOGLE_DCHECK_NE(&from, this);
+  const OilDelivery_CabinDelivery* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const OilDelivery_CabinDelivery>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:pb.OilDelivery.CabinDelivery)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:pb.OilDelivery.CabinDelivery)
+    MergeFrom(*source);
+  }
+}
+
+void OilDelivery_CabinDelivery::MergeFrom(const OilDelivery_CabinDelivery& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:pb.OilDelivery.CabinDelivery)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.id() != 0) {
+    set_id(from.id());
+  }
+  if (from.stationid() != 0) {
+    set_stationid(from.stationid());
+  }
+  if (from.quantity() != 0) {
+    set_quantity(from.quantity());
+  }
+}
+
+void OilDelivery_CabinDelivery::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:pb.OilDelivery.CabinDelivery)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void OilDelivery_CabinDelivery::CopyFrom(const OilDelivery_CabinDelivery& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:pb.OilDelivery.CabinDelivery)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool OilDelivery_CabinDelivery::IsInitialized() const {
+  return true;
+}
+
+void OilDelivery_CabinDelivery::Swap(OilDelivery_CabinDelivery* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void OilDelivery_CabinDelivery::InternalSwap(OilDelivery_CabinDelivery* other) {
+  using std::swap;
+  swap(id_, other->id_);
+  swap(stationid_, other->stationid_);
+  swap(quantity_, other->quantity_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::google::protobuf::Metadata OilDelivery_CabinDelivery::GetMetadata() const {
   protobuf_OilDelivery_2eproto::protobuf_AssignDescriptorsOnce();
   return ::protobuf_OilDelivery_2eproto::file_level_metadata[kIndexInFileMessages];
 }
@@ -3525,6 +3988,12 @@ template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pb::OilDelivery_Vehicle* Arena::
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pb::OilDelivery_Cabin* Arena::CreateMaybeMessage< ::pb::OilDelivery_Cabin >(Arena* arena) {
   return Arena::CreateInternal< ::pb::OilDelivery_Cabin >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pb::OilDelivery_VehicleDelivery* Arena::CreateMaybeMessage< ::pb::OilDelivery_VehicleDelivery >(Arena* arena) {
+  return Arena::CreateInternal< ::pb::OilDelivery_VehicleDelivery >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pb::OilDelivery_CabinDelivery* Arena::CreateMaybeMessage< ::pb::OilDelivery_CabinDelivery >(Arena* arena) {
+  return Arena::CreateInternal< ::pb::OilDelivery_CabinDelivery >(arena);
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pb::OilDelivery_Submission* Arena::CreateMaybeMessage< ::pb::OilDelivery_Submission >(Arena* arena) {
   return Arena::CreateInternal< ::pb::OilDelivery_Submission >(arena);
