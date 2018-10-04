@@ -263,9 +263,7 @@ void Solver::init() {
 
 int Solver::vehicleVolume(const pb::OilDelivery_Vehicle& vehicle) {
 	int volume = 0;
-	for (auto cabin : vehicle.cabins()) {
-		volume += cabin.volume();
-	}
+	for (auto cabin : vehicle.cabins()) { volume += cabin.volume(); }
 	return volume;
 }
 
@@ -273,6 +271,7 @@ bool Solver::optimize(Solution &sln, ID workerId) {
 	Log(LogSwitch::Szx::Framework) << "worker " << workerId << " starts." << endl;
 
 	ID stationNumber = input.gasstations_size();
+	ID vehicleNumber = input.vehicles_size();
 
 	bool status = true;
 	auto &deliveries(*sln.mutable_deliveries());
@@ -281,33 +280,40 @@ bool Solver::optimize(Solution &sln, ID workerId) {
 
 	// TODO[0]: replace the following random assignment with your own algorithm.
 	for (int i = 0; !timer.isTimeOut() && (i < periodNumber); ++i) {
+		auto &delivery(*sln.add_deliveries());
 
-		deliveries[i].mutable_vehicles = { input.vehicles().begin(),input.vehicles().end() };
-		for (auto vehicle : deliveries[i].vehicles()) {
+		for (ID v = 0; v < vehicleNumber;++v) {
+			auto vehicle = delivery.add_vehicledeliveries();
+			auto cabinsInput = input.vehicles()[v].cabins();
+			ID cabinNumber = input.vehicles()[v].cabins_size();
 			// intermediate variables to count objective `sumTotal`
 			double vehicleValue = 0.0, fullLoadRate = 0.0, loadSharing = 0.0;
 			int vehicleLoad = 0, maxStationId = 0, minStationId = 0;
 
-			for (auto cabin : vehicle.cabins()) {
+			vehicle->set_id(v);
+			for (ID c = 0; c < cabinNumber;++c ) {
+				auto cabin = vehicle->add_cabindeliveries();
+				cabin->set_id(c);
 				int stationId = rand.pick(stationNumber);
 				int demand = input.gasstations()[stationId].demandvalues()[i].demand();
 				int value = input.gasstations()[stationId].demandvalues()[i].value();
-				int load = cabin.volume() > demand ? demand : cabin.volume();
-				cabin.set_stationid(stationId);
-				cabin.set_load(rand.pick(load));
+				int maxQuantity = cabinsInput[c].volume() > demand ? demand : cabinsInput[c].volume();
+				int quantity = rand.pick(maxQuantity);
+				cabin->set_stationid(stationId);
+				cabin->set_quantity(quantity);
 
 				// total value loaded by a vehicle
-				vehicleValue += load * value / demand;
+				vehicleValue += 1.0*quantity * value / demand;
 				// loadage of a vehicle
-				vehicleLoad += load;
+				vehicleLoad += quantity;
 				// max and min station id
 				if (stationId > maxStationId) { maxStationId = stationId; }
 				if (stationId < minStationId) { minStationId = stationId; }
 			}
 			// full load rate
-			fullLoadRate = vehicleLoad / vehicleVolume(vehicle);
+			fullLoadRate = 1.0*vehicleLoad / vehicleVolume(input.vehicles[v]);
 			// load sharing
-			loadSharing = (vehicle.cabins_size()) / (vehicle.cabins_size() + maxStationId - minStationId);
+			loadSharing = (input.vehicles[v].cabins_size()) / (input.vehicles[v].cabins_size() + maxStationId - minStationId);
 			// sum value of all vehicles in all periods
 			sln.sumTotal += vehicleValue * fullLoadRate * loadSharing;
 		}
