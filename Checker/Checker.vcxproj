@@ -19,9 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Solver\OilDelivery.pb.cc" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Solver\OilDelivery.pb.h" />
+    <ClInclude Include="..\Solver\PbReader.h" />
     <ClInclude Include="Visualizer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

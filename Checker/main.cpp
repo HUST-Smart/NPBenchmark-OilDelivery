@@ -34,24 +34,24 @@ int main(int argc, char *argv[]) {
 		StationOverDemandError = 0x16
 	};
 
-	string inputPath;
-	string outputPath;
+	string inputPath = "D:\\中石油配送\\OilDelivery\\Deploy\\Instance\\rand.p4s24v3.json";
+	string outputPath = "D:\\中石油配送\\OilDelivery\\Deploy\\Solution\\rand.p4s24v3.json";
 
-	if (argc > 1) {
-		inputPath = argv[1];
-	}
-	else {
-		cout << "input path: " << flush;
-		cin >> inputPath;
-	}
+	//if (argc > 1) {
+	//	inputPath = argv[1];
+	//}
+	//else {
+	//	cout << "input path: " << flush;
+	//	cin >> inputPath;
+	//}
 
-	if (argc > 2) {
-		outputPath = argv[2];
-	}
-	else {
-		cout << "output path: " << flush;
-		cin >> outputPath;
-	}
+	//if (argc > 2) {
+	//	outputPath = argv[2];
+	//}
+	//else {
+	//	cout << "output path: " << flush;
+	//	cin >> outputPath;
+	//}
 
 	pb::OilDelivery::Input input;
 	if (!load(inputPath, input)) { return ~CheckerFlag::IoError; }
@@ -82,8 +82,7 @@ int main(int argc, char *argv[]) {
 
 		for (auto vehicleDelivery = delivery->vehicledeliveries().begin(); vehicleDelivery != delivery->vehicledeliveries().end(); ++vehicleDelivery) {
 
-			auto vehicleInput = input.vehicles()[vehicleDelivery->id()];
-			auto cabinsInVehicle = vehicleInput.cabins();
+			auto vehicleInput = input.vehicles(vehicleDelivery->id());
 			// intermediate variables to count objective `sumTotal`
 			double vehicleValue = 0.0, fullLoadRate = 0.0, loadSharing = 0.0;
 			int vehicleLoad = 0, maxStationId = 0, minStationId = 0;
@@ -94,16 +93,16 @@ int main(int argc, char *argv[]) {
 
 			for (auto cabinDelivery = vehicleDelivery->cabindeliveries().begin(); cabinDelivery != vehicleDelivery->cabindeliveries().end(); ++cabinDelivery) {
 				// load over cabin's volume
-				if (cabinDelivery->quantity() > cabinsInVehicle[cabinDelivery->id()].volume() ) { error |= CheckerFlag::CabinOverVolumeError; }
+				if (cabinDelivery->quantity() > vehicleInput.cabins(cabinDelivery->id()).volume() ) { error |= CheckerFlag::CabinOverVolumeError; }
 				// load over station's demand
 				oilSum[cabinDelivery->stationid()] += cabinDelivery->quantity();
-				const auto &demandValue = input.gasstations()[cabinDelivery->stationid()].demandvalues();
-				if (oilSum[cabinDelivery->stationid()] > demandValue[period].demand()) { error |= CheckerFlag::StationOverDemandError; }
+				auto demandValue = input.gasstations(cabinDelivery->stationid()).demandvalues(period);
+				if (oilSum[cabinDelivery->stationid()] > demandValue.demand()) { error |= CheckerFlag::StationOverDemandError; }
 				// if a station is deliveried in more than one period 
 				deliveriedTimes[period*stationNumber + cabinDelivery->stationid()] = 1;
 				
 				// total value loaded by a vehicle
-				vehicleValue += 1.0*(cabinDelivery->quantity())*(demandValue[period].value()) / (demandValue[period].demand());
+				vehicleValue += 1.0*(cabinDelivery->quantity())*(demandValue.value()) / (demandValue.demand());
 				// loadage of a vehicle
 				vehicleLoad += cabinDelivery->quantity();
 				// max and min station id
@@ -111,7 +110,7 @@ int main(int argc, char *argv[]) {
 				if (cabinDelivery->stationid() < minStationId) { minStationId = cabinDelivery->stationid(); }
 			}
 			// full load rate
-			fullLoadRate = 1.0*vehicleLoad / vehicleVolume(input.vehicles()[vehicleDelivery->id()]);
+			fullLoadRate = 1.0*vehicleLoad / vehicleVolume(vehicleInput);
 			// load sharing
 			loadSharing = 1.0*(vehicleInput.cabins_size()) / (vehicleInput.cabins_size() + maxStationId - minStationId);
 			// sum value of all vehicles in all periods

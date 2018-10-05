@@ -53,13 +53,17 @@ public:
 
     #pragma region Constant
 public:
-    enum {
-        MaxStationNum = 100,
-        MaxVehicleNum = 10,
-        PeriodNum = 4,
+	enum {
+		MaxStationNum = 110,
+		MaxVehicleNum = 10,
+		MaxCabinNum = 5,
+		PeriodNum = 4,
+		MaxDemand = 60,
+		MaxValue = 100,
+		MaxCabinVolume = 15,
 
-        InvalidId = -1,
-    };
+		InvalidId = -1,
+	};
     #pragma endregion Constant
 
     #pragma region Constructor

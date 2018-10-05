@@ -39,12 +39,15 @@ public:
     };
 
     struct InstanceTrait {
-        int horizonLen = 24 * 60;
-        Interval<int> gateNum = Interval<int>(60, Problem::MaxGateNum);
-        Interval<int> bridgeNum = Interval<int>(20, Problem::MaxBridgeNum);
-        Interval<int> flightNum = Interval<int>(100, Problem::MaxFlightNum);
-        Interval<int> incompatibleGateNumPerFlight = Interval<int>(0, 8);
-        Interval<int> turnaroundLen = Interval<int>(40, 8 * 60);
+		int periodNum = 4;
+        Interval<int> stationNum = Interval<int>(10, Problem::MaxStationNum);
+        Interval<int> vehicleNum = Interval<int>(2, Problem::MaxVehicleNum);
+		Interval<int> cabinNum = Interval<int>(1, Problem::MaxCabinNum);
+		Interval<int> demand = Interval<int>(1, Problem::MaxDemand);
+		Interval<int> value = Interval<int>(0, Problem::MaxValue);
+		Interval<int> cabinVolume = Interval<int>(5, Problem::MaxCabinVolume);
+
+		
     };
     #pragma endregion Type
 

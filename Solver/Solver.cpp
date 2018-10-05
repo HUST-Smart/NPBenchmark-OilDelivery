@@ -172,7 +172,7 @@ bool Solver::solve() {
 
     Log(LogSwitch::Szx::Framework) << "collect best result among all workers." << endl;
     int bestIndex = -1;
-    Length bestValue = 0;
+    double bestValue = 0;
     for (int i = 0; i < workerNum; ++i) {
         if (!success[i]) { continue; }
         Log(LogSwitch::Szx::Framework) << "worker " << i << " got " << solutions[i].sumTotal << endl;
@@ -284,23 +284,24 @@ bool Solver::optimize(Solution &sln, ID workerId) {
 
 		for (ID v = 0; v < vehicleNumber;++v) {
 			auto vehicle = delivery.add_vehicledeliveries();
-			auto cabinsInput = input.vehicles()[v].cabins();
-			ID cabinNumber = input.vehicles()[v].cabins_size();
+			ID cabinNumber = input.vehicles(v).cabins_size();
 			// intermediate variables to count objective `sumTotal`
 			double vehicleValue = 0.0, fullLoadRate = 0.0, loadSharing = 0.0;
 			int vehicleLoad = 0, maxStationId = 0, minStationId = 0;
 
 			vehicle->set_id(v);
 			for (ID c = 0; c < cabinNumber;++c ) {
+				auto cabinInput = input.vehicles(v).cabins(c);
 				auto cabin = vehicle->add_cabindeliveries();
 				cabin->set_id(c);
-				int stationId = rand.pick(stationNumber);
-				int demand = input.gasstations()[stationId].demandvalues()[i].demand();
-				int value = input.gasstations()[stationId].demandvalues()[i].value();
-				int maxQuantity = cabinsInput[c].volume() > demand ? demand : cabinsInput[c].volume();
-				int quantity = rand.pick(maxQuantity);
+				int stationId = rand.pick(0, stationNumber);
+				int demand = input.gasstations(stationId).demandvalues(i).demand();
+				int value = input.gasstations(stationId).demandvalues(i).value();
+				int maxQuantity = cabinInput.volume() > demand ? demand : cabinInput.volume();
+				int quantity = rand.pick(0, maxQuantity + 1);
 				cabin->set_stationid(stationId);
 				cabin->set_quantity(quantity);
+
 
 				// total value loaded by a vehicle
 				vehicleValue += 1.0*quantity * value / demand;
@@ -311,9 +312,10 @@ bool Solver::optimize(Solution &sln, ID workerId) {
 				if (stationId < minStationId) { minStationId = stationId; }
 			}
 			// full load rate
-			fullLoadRate = 1.0*vehicleLoad / vehicleVolume(input.vehicles[v]);
+			fullLoadRate = 1.0*vehicleLoad / vehicleVolume(input.vehicles(v));
 			// load sharing
-			loadSharing = (input.vehicles[v].cabins_size()) / (input.vehicles[v].cabins_size() + maxStationId - minStationId);
+			
+			loadSharing = 1.0*cabinNumber / (cabinNumber + maxStationId - minStationId);
 			// sum value of all vehicles in all periods
 			sln.sumTotal += vehicleValue * fullLoadRate * loadSharing;
 		}

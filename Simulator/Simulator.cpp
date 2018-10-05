@@ -99,7 +99,7 @@ void Simulator::run(const String &envPath) {
 void Simulator::debug() {
     Task task;
     task.instSet = "";
-    task.instId = "rand.g4b2f8h480";
+    task.instId = "rand.p4s24v3";
     task.randSeed = "1500972793";
     //task.randSeed = to_string(RandSeed::generate());
     task.timeout = "180";
@@ -126,7 +126,7 @@ void Simulator::benchmark(int repeat) {
     random_device rd;
     mt19937 rgen(rd());
     // EXTEND[szx][5]: read it from InstanceList.txt.
-    vector<String> instList({ "rand.g4b2f8h480", "rand.g80b25f200h1440" });
+    vector<String> instList({ "rand.p4s24v3", "rand.p4s86v6" });
     for (int i = 0; i < repeat; ++i) {
         //shuffle(instList.begin(), instList.end(), rgen);
         for (auto inst = instList.begin(); inst != instList.end(); ++inst) {
@@ -154,7 +154,7 @@ void Simulator::parallelBenchmark(int repeat) {
     random_device rd;
     mt19937 rgen(rd());
     // EXTEND[szx][5]: read it from InstanceList.txt.
-    vector<String> instList({ "rand.g4b2f8h480", "rand.g80b25f200h1440" });
+    vector<String> instList({ "rand.p4s24v3", "rand.p4s86v6" });
     for (int i = 0; i < repeat; ++i) {
         //shuffle(instList.begin(), instList.end(), rgen);
         for (auto inst = instList.begin(); inst != instList.end(); ++inst) {
@@ -168,44 +168,51 @@ void Simulator::parallelBenchmark(int repeat) {
 }
 
 void Simulator::generateInstance(const InstanceTrait &trait) {
+
     Random rand;
-
-    int gateNum = rand.pick(trait.gateNum.begin, trait.gateNum.end);
-    int flightNum = rand.pick(trait.flightNum.begin, trait.flightNum.end);
-
+	bool isSmallInstance = false;
+	int stationNum = 0, vehicleNum = 0;
+	if (isSmallInstance) {
+		stationNum = rand.pick(trait.stationNum.begin, 25);
+		vehicleNum = rand.pick(trait.vehicleNum.begin, 4);
+	}
+	else {
+		stationNum = rand.pick(70, trait.stationNum.end);
+		vehicleNum = rand.pick(6, trait.vehicleNum.end);
+	}
     Problem::Input input;
-    input.mutable_airport()->set_bridgenum(rand.pick(trait.bridgeNum.begin, trait.bridgeNum.end));
-    for (int g = 0; g < gateNum; ++g) {
-        auto &gate(*input.mutable_airport()->add_gates());
-        gate.set_id(g);
-        gate.set_mingap(30);
-    }
-    for (auto f = 0; f < flightNum; ++f) {
-        auto &flight(*input.add_flights());
-        flight.set_id(f);
+	int demand = 0, value = 0;
+    for (int s = 0; s < stationNum; ++s) {
+		auto station = input.add_gasstations();
+        station->set_id(s);
 
-        int turnaroudLen = rand.pick(trait.turnaroundLen.begin, trait.turnaroundLen.end);
-        if (turnaroudLen > 3 * 60) { // reduce long turnaround.
-            turnaroudLen = rand.pick(trait.turnaroundLen.begin, trait.turnaroundLen.end);
-        }
-        int turnaroundBegin = rand.pick(0, trait.horizonLen - turnaroudLen);
-        flight.mutable_turnaround()->set_begin(turnaroundBegin);
-        flight.mutable_turnaround()->set_end(turnaroundBegin + turnaroudLen);
-
-        int incompatibleGateNum = rand.pick(trait.incompatibleGateNumPerFlight.begin, trait.incompatibleGateNumPerFlight.end);
-        Sampling sample(rand, incompatibleGateNum);
-        List<int> pickedGates(incompatibleGateNum + 1);
-        for (auto g = 0; g < gateNum; ++g) { pickedGates[sample.isPicked()] = g; }
-        for (auto ig = 1; ig <= incompatibleGateNum; ++ig) {
-            flight.add_incompatiblegates(pickedGates[ig]);
-        }
+		for (int p = 0; p < trait.periodNum; ++p) {
+			demand = rand.pick(trait.demand.begin, trait.demand.end);
+			value = rand.pick(trait.value.begin, trait.value.end);
+			auto demandValue = station->add_demandvalues();
+			demandValue->set_demand(demand);
+			demandValue->set_value(value);
+		}
     }
+	int cabinNum = 0, volume = 0;
+	for (int v = 0; v < vehicleNum; ++v) {
+		auto vehicle = input.add_vehicles();
+		vehicle->set_id(v);
+
+		cabinNum = rand.pick(trait.cabinNum.begin, trait.cabinNum.end);
+		for (int c = 0; c < cabinNum; ++c) {
+			auto cabin = vehicle->add_cabins();
+			volume = rand.pick(trait.cabinVolume.begin, trait.cabinVolume.end);
+			cabin->set_id(c);
+			cabin->set_volume(volume);
+		}
+	}
 
     ostringstream path;
-    path << InstanceDir() << "rand.g" << input.airport().gates().size()
-        << "b" << input.airport().bridgenum()
-        << "f" << input.flights().size()
-        << "h" << trait.horizonLen << ".json";
+	path << InstanceDir() << "rand.p4s"
+		<< input.gasstations_size()
+		<< "v" << input.vehicles_size()
+		<< ".json";
     save(path.str(), input);
 }
 
