@@ -169,7 +169,7 @@ bool Solver::solve() {
 
     Log(LogSwitch::Szx::Framework) << "collect best result among all workers." << endl;
     int bestIndex = -1;
-    Income bestValue = 0.0;
+    Revenue bestValue = 0.0;
     for (int i = 0; i < workerNum; ++i) {
         if (!success[i]) { continue; }
         Log(LogSwitch::Szx::Framework) << "worker " << i << " got " << solutions[i].sumTotal << endl;
@@ -192,10 +192,10 @@ void Solver::record() const {
 
     System::MemoryUsage mu = System::peakMemoryUsage();
 
-    Income obj = output.sumTotal;
-	Income checkerObj = -1.0;
+    Revenue obj = output.sumTotal;
+	Revenue checkerObj = -1.0;
     bool feasible = check(checkerObj);
-	Income diff = obj - checkerObj;
+	Revenue diff = obj - checkerObj;
 
     // record basic information.
 	log << env.friendlyLocalTime() << ","
@@ -228,7 +228,7 @@ void Solver::record() const {
     #endif // SZX_DEBUG
 }
 
-bool Solver::check(Income &checkerObj) const {
+bool Solver::check(Revenue &checkerObj) const {
     #if SZX_DEBUG
 	enum CheckerFlag {
 		IoError = 0x0,
