@@ -18,15 +18,15 @@ package pb;
 // 主要数据
 // 求解算法输入输出数据接口
 message OilDelivery {
-    // 求解石油配送问题所需的输入数据
-    message Input {
-        repeated GasStation gasStations = 1; 	// 加油站列表
-        repeated Vehicle vehicles = 2; 		    // 车辆列表
+	// 求解石油配送问题所需的输入数据
+	message Input {
+        repeated GasStation gasStations = 1;	// 加油站列表
+        repeated Vehicle vehicles = 2;			// 车辆列表
     }
-    // 求解结果输出数据
+	// 求解结果输出数据
     message Output {
-        repeated Delivery deliveries = 1; 	// deliveries[p]表示p阶段的配送方案
-        message Delivery {                  // vehicleDeliveries[v]表示车辆v的配送方案
+        repeated Delivery deliveries = 1;	// deliveries[p]表示p阶段的配送方案
+        message Delivery {					// vehicleDeliveries[v]表示车辆v的配送方案
             repeated VehicleDelivery vehicleDeliveries=1;
         }
     }
@@ -35,8 +35,8 @@ message OilDelivery {
         int32 id = 1;
         repeated DemandValue demandValues = 2;
         message DemandValue {
-            int32 demand = 1;   //加油站在某一时段的需求量
-            int32 value = 2;    //加油站在某一时段所有需求量得到满足的总价值
+            int32 demand = 1;	//加油站在某一时段的需求量
+            int32 value = 2;	//加油站在某一时段所有需求量得到满足的总价值
         }
     }
 
@@ -47,7 +47,7 @@ message OilDelivery {
 
     message Cabin {
         int32 id = 1;
-        int32 volume = 2;	    //容量
+        int32 volume = 2;		//容量
     }
 
     message VehicleDelivery{
@@ -56,31 +56,31 @@ message OilDelivery {
     }
 
     message CabinDelivery{
-        int32 id=1;             //车舱ID
-        int32 stationId =2;     //给ID为stationId的站点配送量为quantity的石油
+        int32 id=1;				//车舱ID
+        int32 stationId =2;		//给ID为stationId的站点配送量为quantity的石油
         int32 quantity=3;
     }
     
-    // 测评系统提交信息摘要
+	// 测评系统提交信息摘要
     message Submission {
-    // 应在 SDK 内由提交者手工填写的数据项.
-    string author = 1; // 提交者姓名.
-    string algorithm = 2; // 算法名称.
-    string thread = 3; // 算法线程数
-    string cpu = 4; // 处理器型号与主频.
-    string ram = 5; // 内存容量与频率. (Windows 下可以使用 wmic memorychip 命令查看)
-    string language = 6; // 编程语言.
-    string compiler = 7; // 编译器.
-    string os = 8; // 操作系统
+	// 应在 SDK 内由提交者手工填写的数据项.
+    string author = 1;		// 提交者姓名.
+    string algorithm = 2;	// 算法名称.
+    string thread = 3;		// 算法线程数
+    string cpu = 4;			// 处理器型号与主频.
+    string ram = 5;			// 内存容量与频率. (Windows 下可以使用 wmic memorychip 命令查看)
+    string language = 6;	// 编程语言.
+    string compiler = 7;	// 编译器.
+    string os = 8;			// 操作系统
 
-    // 由 SDK 自动记录的数据项.
-    string problem = 21; // 问题名称.
-    string instance = 22; // 算例名称.
-    string duration = 23; // 求解耗时.
+	// 由 SDK 自动记录的数据项.
+    string problem = 21;	// 问题名称.
+    string instance = 22;	// 算例名称.
+    string duration = 23;	// 求解耗时.
 
-    // 由服务器自动计算的数据项.
-    double obj = 31; // 计算结果目标函数值.
-    string email = 32; // 提交者邮箱.
-    string date = 33; // 提交时间.
+	// 由服务器自动计算的数据项.
+    double obj = 31;		// 计算结果目标函数值.
+    string email = 32;		// 提交者邮箱.
+    string date = 33;		// 提交时间.
     }
 }

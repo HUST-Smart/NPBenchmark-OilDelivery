@@ -34,8 +34,8 @@ int main(int argc, char *argv[]) {
 		StationOverDemandError = 0x16
 	};
 
-	string inputPath = "D:\\中石油配送\\OilDelivery\\Deploy\\Instance\\rand.p4s24v3.json";
-	string outputPath = "D:\\中石油配送\\OilDelivery\\Deploy\\Solution\\rand.p4s24v3.json";
+	string inputPath = "..\\Deploy\\Instance\\rand.p4s24v3.json";
+	string outputPath = "..\\Deploy\\Solution\\rand.p4s24v3.json";
 
 	//if (argc > 1) {
 	//	inputPath = argv[1];
@@ -129,5 +129,5 @@ int main(int argc, char *argv[]) {
 		}
 	}
 	end:
-	return (error == 0) ? sumTotal : ~error;	// return double?
+	return (error == 0) ? int(10000*sumTotal) : ~error;
 }
