@@ -7,12 +7,9 @@
 #include <string>
 #include <thread>
 #include <mutex>
-
 #include <cmath>
 
-
 using namespace std;
-
 
 namespace szx {
 
@@ -33,11 +30,11 @@ int Solver::Cli::run(int argc, char * argv[]) {
         { LogPathOption(), nullptr }
     });
 
-    for (int i = 1; i < argc; ++i) { // skip executable name.
+    for (int i = 1; i < argc; ++i) {		// skip executable name.
         auto mapIter = optionMap.find(argv[i]);
-        if (mapIter != optionMap.end()) { // option argument.
+        if (mapIter != optionMap.end()) {	// option argument.
             mapIter->second = argv[++i];
-        } else { // switch argument.
+        } else {	// switch argument.
             switchSet.insert(argv[i]);
         }
     }
@@ -172,7 +169,7 @@ bool Solver::solve() {
 
     Log(LogSwitch::Szx::Framework) << "collect best result among all workers." << endl;
     int bestIndex = -1;
-    double bestValue = 0;
+    Income bestValue = 0.0;
     for (int i = 0; i < workerNum; ++i) {
         if (!success[i]) { continue; }
         Log(LogSwitch::Szx::Framework) << "worker " << i << " got " << solutions[i].sumTotal << endl;
@@ -195,22 +192,23 @@ void Solver::record() const {
 
     System::MemoryUsage mu = System::peakMemoryUsage();
 
-    double obj = output.sumTotal;
-    Length checkerObj = -1;
+    Income obj = output.sumTotal;
+	Income checkerObj = -1.0;
     bool feasible = check(checkerObj);
+	Income diff = obj - checkerObj;
 
     // record basic information.
 	log << env.friendlyLocalTime() << ","
 		<< env.rid << ","
 		<< env.instPath << ","
-		<< feasible << "," << (obj - checkerObj) << ","
-		<< output.sumTotal << ","
+		<< feasible << "," << (diff < 10E-3 ? 0 : diff) << ","	// the difference between solution and checker.
+		<< obj << ","
 		<< timer.elapsedSeconds() << ","
 		<< mu.physicalMemory << "," << mu.virtualMemory << ","
 		<< env.randSeed << ","
 		<< cfg.toBriefStr() << ","
 		<< generation << "," << iteration << ","
-		<< output.sumTotal;
+		<< obj;
 
     // record solution vector.
     // EXTEND[szx][2]: save solution in log.
@@ -230,7 +228,7 @@ void Solver::record() const {
     #endif // SZX_DEBUG
 }
 
-bool Solver::check(Length &checkerObj) const {
+bool Solver::check(Income &checkerObj) const {
     #if SZX_DEBUG
 	enum CheckerFlag {
 		IoError = 0x0,
@@ -241,18 +239,19 @@ bool Solver::check(Length &checkerObj) const {
 		StationOverDemandError = 0x16
 	};
 
-    checkerObj = System::exec("Checker.exe " + env.instPath + " " + env.solutionPathWithTime());
-    if (checkerObj > 0) { return true; }
-    checkerObj = ~checkerObj;
-    if (checkerObj == CheckerFlag::IoError) { Log(LogSwitch::Checker) << "IoError." << endl; }
-    if (checkerObj & CheckerFlag::FormatError) { Log(LogSwitch::Checker) << "FormatError." << endl; }
-    if (checkerObj & CheckerFlag::VehicleDispatchError) { Log(LogSwitch::Checker) << "VehicleDispatchError." << endl; }
-    if (checkerObj & CheckerFlag::StationOverTimeError) { Log(LogSwitch::Checker) << "StationOverTimeError." << endl; }
-    if (checkerObj & CheckerFlag::CabinOverVolumeError) { Log(LogSwitch::Checker) << "CabinOverVolumeError." << endl; }
-	if (checkerObj & CheckerFlag::StationOverDemandError) { Log(LogSwitch::Checker) << "StationOverDemandError." << endl; }
+	int checkerDecimal = System::exec("Checker.exe " + env.instPath + " " + env.solutionPathWithTime());
+	checkerObj = 1.0*checkerDecimal / 10000;
+    if (checkerDecimal > 0) { return true; }
+	checkerDecimal = ~checkerDecimal;
+    if (checkerDecimal == CheckerFlag::IoError) { Log(LogSwitch::Checker) << "IoError." << endl; }
+    if (checkerDecimal & CheckerFlag::FormatError) { Log(LogSwitch::Checker) << "FormatError." << endl; }
+    if (checkerDecimal & CheckerFlag::VehicleDispatchError) { Log(LogSwitch::Checker) << "VehicleDispatchError." << endl; }
+    if (checkerDecimal & CheckerFlag::StationOverTimeError) { Log(LogSwitch::Checker) << "StationOverTimeError." << endl; }
+    if (checkerDecimal & CheckerFlag::CabinOverVolumeError) { Log(LogSwitch::Checker) << "CabinOverVolumeError." << endl; }
+	if (checkerDecimal & CheckerFlag::StationOverDemandError) { Log(LogSwitch::Checker) << "StationOverDemandError." << endl; }
     return false;
     #else
-    checkerObj = 0;
+    checkerObj = 0.0;
     return true;
     #endif // SZX_DEBUG
 }

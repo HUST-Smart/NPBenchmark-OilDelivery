@@ -26,6 +26,8 @@ using Coord = Length;
 using Duration = int;
 // number of neighborhood moves in local search.
 using Iteration = int;
+// total income of the delivery
+using Income = double;
 
 template<typename T>
 using List = std::vector<T>;

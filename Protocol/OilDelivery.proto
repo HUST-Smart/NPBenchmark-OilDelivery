@@ -27,7 +27,7 @@ message OilDelivery {
     message Output {
         repeated Delivery deliveries = 1;	// deliveries[p]表示p阶段的配送方案
         message Delivery {					// vehicleDeliveries[v]表示车辆v的配送方案
-            repeated VehicleDelivery vehicleDeliveries=1;
+            repeated VehicleDelivery vehicleDeliveries = 1;
         }
     }
 
@@ -41,8 +41,8 @@ message OilDelivery {
     }
 
     message Vehicle {
-        int32 id=1;
-        repeated Cabin cabins=2;
+        int32 id = 1;
+        repeated Cabin cabins = 2;
     }
 
     message Cabin {
@@ -50,15 +50,15 @@ message OilDelivery {
         int32 volume = 2;		//容量
     }
 
-    message VehicleDelivery{
-        int32 id=1;
-        repeated CabinDelivery cabinDeliveries=2;
+    message VehicleDelivery {
+        int32 id = 1;
+        repeated CabinDelivery cabinDeliveries = 2;
     }
 
-    message CabinDelivery{
-        int32 id=1;				//车舱ID
-        int32 stationId =2;		//给ID为stationId的站点配送量为quantity的石油
-        int32 quantity=3;
+    message CabinDelivery {
+        int32 id = 1;				//车舱ID
+        int32 stationId = 2;		//给ID为stationId的站点配送量为quantity的石油
+        int32 quantity = 3;
     }
     
 	// 测评系统提交信息摘要

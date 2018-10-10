@@ -192,7 +192,7 @@ public:
     #pragma region Method
 public:
     bool solve(); // return true if exit normally. solve by multiple workers together.
-    bool check(Length &obj) const;
+	bool check(Income &obj) const;
     void record() const; // save running log.
 	int vehicleVolume(const pb::OilDelivery_Vehicle& vehicle);// return total volume of the vehicle
 

@@ -34,24 +34,25 @@ int main(int argc, char *argv[]) {
 		StationOverDemandError = 0x16
 	};
 
-	string inputPath = "..\\Deploy\\Instance\\rand.p4s24v3.json";
-	string outputPath = "..\\Deploy\\Solution\\rand.p4s24v3.json";
+	// string inputPath = "..\\Deploy\\Instance\\rand.p4s24v3.json";
+	// string outputPath = "..\\Deploy\\Solution\\rand.p4s24v3.json";
+	// ..\\Deploy\\Instance\\rand.p4s24v3.json  ..\\Deploy\\Solution\\rand.p4s24v3.json
+	string inputPath, outputPath;
 
-	//if (argc > 1) {
-	//	inputPath = argv[1];
-	//}
-	//else {
-	//	cout << "input path: " << flush;
-	//	cin >> inputPath;
-	//}
-
-	//if (argc > 2) {
-	//	outputPath = argv[2];
-	//}
-	//else {
-	//	cout << "output path: " << flush;
-	//	cin >> outputPath;
-	//}
+	if (argc > 1) {
+		inputPath = argv[1];
+	}
+	else {
+		cerr << "input path: " << flush;
+		cin >> inputPath;
+	}
+	if (argc > 2) {
+		outputPath = argv[2];
+	}
+	else {
+		cerr << "output path: " << flush;
+		cin >> outputPath;
+	}
 
 	pb::OilDelivery::Input input;
 	if (!load(inputPath, input)) { return ~CheckerFlag::IoError; }
@@ -70,7 +71,7 @@ int main(int argc, char *argv[]) {
 	double sumTotal = 0.0;	// objective
 
 	int stationNumber = input.gasstations_size();
-	int *oilSum = new int[stationNumber]{ 0 };			// oilSum[i]: sum of oil deliveried to gas station i
+	int *oilSum = new int[stationNumber] { 0 };			// oilSum[i]: sum of oil deliveried to gas station i
 	int *deliveriedTimes = new int[stationNumber * PERIODNUM]{ 0 };	// deliveried times of each station in all periods
 
 	if (output.deliveries_size() != PERIODNUM) { error |= CheckerFlag::FormatError; }
@@ -93,14 +94,14 @@ int main(int argc, char *argv[]) {
 
 			for (auto cabinDelivery = vehicleDelivery->cabindeliveries().begin(); cabinDelivery != vehicleDelivery->cabindeliveries().end(); ++cabinDelivery) {
 				// load over cabin's volume
-				if (cabinDelivery->quantity() > vehicleInput.cabins(cabinDelivery->id()).volume() ) { error |= CheckerFlag::CabinOverVolumeError; }
+				if (cabinDelivery->quantity() > vehicleInput.cabins(cabinDelivery->id()).volume()) { error |= CheckerFlag::CabinOverVolumeError; }
 				// load over station's demand
 				oilSum[cabinDelivery->stationid()] += cabinDelivery->quantity();
 				auto demandValue = input.gasstations(cabinDelivery->stationid()).demandvalues(period);
 				if (oilSum[cabinDelivery->stationid()] > demandValue.demand()) { error |= CheckerFlag::StationOverDemandError; }
 				// if a station is deliveried in more than one period 
 				deliveriedTimes[period*stationNumber + cabinDelivery->stationid()] = 1;
-				
+
 				// total value loaded by a vehicle
 				vehicleValue += 1.0*(cabinDelivery->quantity())*(demandValue.value()) / (demandValue.demand());
 				// loadage of a vehicle
@@ -128,6 +129,8 @@ int main(int argc, char *argv[]) {
 			}
 		}
 	}
-	end:
-	return (error == 0) ? int(10000*sumTotal) : ~error;
+end:
+	int returnCode = (error == 0) ? int(10000 * sumTotal) : ~error;
+	cout << returnCode << endl;
+	return returnCode;
 }
