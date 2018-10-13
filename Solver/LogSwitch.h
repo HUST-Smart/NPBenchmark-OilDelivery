@@ -11,11 +11,11 @@
 #include "Utility.h"
 
 
-namespace szx {
+namespace lcg {
 
 struct LogSwitch {
-    // TODO[szx][0]: turn off all logs before the release.
-    enum Szx {
+    // TODO[lcg][0]: turn off all logs before the release.
+    enum LCG {
         Main = Log::Level::Info,
         Cli = Log::Level::Off,
         Framework = Log::Level::Debug,

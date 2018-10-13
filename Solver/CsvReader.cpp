@@ -4,7 +4,7 @@
 using namespace std;
 
 
-namespace szx {
+namespace lcg {
 
 const set<char> CsvReader::NewLineChars = { '\r', '\n' };
 const set<char> CsvReader::SpaceChars = { ' ', '\t' };

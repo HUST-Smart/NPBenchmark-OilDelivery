@@ -11,11 +11,11 @@
 
 using namespace std;
 
-namespace szx {
+namespace lcg {
 
 #pragma region Solver::Cli
 int Solver::Cli::run(int argc, char * argv[]) {
-    Log(LogSwitch::Szx::Cli) << "parse command line arguments." << endl;
+    Log(LogSwitch::LCG::Cli) << "parse command line arguments." << endl;
     Set<String> switchSet;
     Map<String, char*> optionMap({ // use string as key to compare string contents instead of pointers.
         { InstancePathOption(), nullptr },
@@ -39,7 +39,7 @@ int Solver::Cli::run(int argc, char * argv[]) {
         }
     }
 
-    Log(LogSwitch::Szx::Cli) << "execute commands." << endl;
+    Log(LogSwitch::LCG::Cli) << "execute commands." << endl;
     if (switchSet.find(HelpSwitch()) != switchSet.end()) {
         cout << HelpInfo() << endl;
     }
@@ -55,7 +55,7 @@ int Solver::Cli::run(int argc, char * argv[]) {
     Solver::Configuration cfg;
     cfg.load(env.cfgPath);
 
-    Log(LogSwitch::Szx::Input) << "load instance " << env.instPath << " (seed=" << env.randSeed << ")." << endl;
+    Log(LogSwitch::LCG::Input) << "load instance " << env.instPath << " (seed=" << env.randSeed << ")." << endl;
     Problem::Input input;
     if (!input.load(env.instPath)) { return -1; }
 
@@ -68,10 +68,10 @@ int Solver::Cli::run(int argc, char * argv[]) {
     submission.set_duration(to_string(solver.timer.elapsedSeconds()) + "s");
 
     solver.output.save(env.slnPath, submission);
-    #if SZX_DEBUG
+    #if LCG_DEBUG
     solver.output.save(env.solutionPathWithTime(), submission);
     solver.record();
-    #endif // SZX_DEBUG
+    #endif // LCG_DEBUG
 
     return 0;
 }
@@ -120,12 +120,12 @@ void Solver::Environment::load(const String &filePath) {
 }
 
 void Solver::Environment::loadWithoutCalibrate(const String &filePath) {
-    // EXTEND[szx][8]: load environment from file.
-    // EXTEND[szx][8]: check file existence first.
+    // EXTEND[lcg][8]: load environment from file.
+    // EXTEND[lcg][8]: check file existence first.
 }
 
 void Solver::Environment::save(const String &filePath) const {
-    // EXTEND[szx][8]: save environment to file.
+    // EXTEND[lcg][8]: save environment to file.
 }
 void Solver::Environment::calibrate() {
     // adjust thread number.
@@ -139,12 +139,12 @@ void Solver::Environment::calibrate() {
 
 #pragma region Solver::Configuration
 void Solver::Configuration::load(const String &filePath) {
-    // EXTEND[szx][5]: load configuration from file.
-    // EXTEND[szx][8]: check file existence first.
+    // EXTEND[lcg][5]: load configuration from file.
+    // EXTEND[lcg][8]: check file existence first.
 }
 
 void Solver::Configuration::save(const String &filePath) const {
-    // EXTEND[szx][5]: save configuration to file.
+    // EXTEND[lcg][5]: save configuration to file.
 }
 #pragma endregion Solver::Configuration
 
@@ -157,22 +157,22 @@ bool Solver::solve() {
     List<Solution> solutions(workerNum, Solution(this));
     List<bool> success(workerNum);
 
-    Log(LogSwitch::Szx::Framework) << "launch " << workerNum << " workers." << endl;
+    Log(LogSwitch::LCG::Framework) << "launch " << workerNum << " workers." << endl;
     List<thread> threadList;
     threadList.reserve(workerNum);
     for (int i = 0; i < workerNum; ++i) {
-        // TODO[szx][2]: as *this is captured by ref, the solver should support concurrency itself, i.e., data members should be read-only or independent for each worker.
-        // OPTIMIZE[szx][3]: add a list to specify a series of algorithm to be used by each threads in sequence.
+        // TODO[lcg][2]: as *this is captured by ref, the solver should support concurrency itself, i.e., data members should be read-only or independent for each worker.
+        // OPTIMIZE[lcg][3]: add a list to specify a series of algorithm to be used by each threads in sequence.
         threadList.emplace_back([&, i]() { success[i] = optimize(solutions[i], i); });
     }
     for (int i = 0; i < workerNum; ++i) { threadList.at(i).join(); }
 
-    Log(LogSwitch::Szx::Framework) << "collect best result among all workers." << endl;
+    Log(LogSwitch::LCG::Framework) << "collect best result among all workers." << endl;
     int bestIndex = -1;
     Revenue bestValue = 0.0;
     for (int i = 0; i < workerNum; ++i) {
         if (!success[i]) { continue; }
-        Log(LogSwitch::Szx::Framework) << "worker " << i << " got " << solutions[i].sumTotal << endl;
+        Log(LogSwitch::LCG::Framework) << "worker " << i << " got " << solutions[i].sumTotal << endl;
         if (solutions[i].sumTotal <= bestValue) { continue; }
         bestIndex = i;
         bestValue = solutions[i].sumTotal;
@@ -185,7 +185,7 @@ bool Solver::solve() {
 }
 
 void Solver::record() const {
-    #if SZX_DEBUG
+    #if LCG_DEBUG
     int generation = 0;
 
     ostringstream log;
@@ -211,7 +211,7 @@ void Solver::record() const {
 		<< obj;
 
     // record solution vector.
-    // EXTEND[szx][2]: save solution in log.
+    // EXTEND[lcg][2]: save solution in log.
     log << endl;
 
     // append all text atomically.
@@ -225,11 +225,11 @@ void Solver::record() const {
     }
     logFile << log.str();
     logFile.close();
-    #endif // SZX_DEBUG
+    #endif // LCG_DEBUG
 }
 
 bool Solver::check(Revenue &checkerObj) const {
-    #if SZX_DEBUG
+    #if LCG_DEBUG
 	enum CheckerFlag {
 		IoError = 0x0,
 		FormatError = 0x1,
@@ -253,7 +253,7 @@ bool Solver::check(Revenue &checkerObj) const {
     #else
     checkerObj = 0.0;
     return true;
-    #endif // SZX_DEBUG
+    #endif // LCG_DEBUG
 }
 
 void Solver::init() {
@@ -267,7 +267,7 @@ int Solver::vehicleVolume(const pb::OilDelivery_Vehicle& vehicle) {
 }
 
 bool Solver::optimize(Solution &sln, ID workerId) {
-	Log(LogSwitch::Szx::Framework) << "worker " << workerId << " starts." << endl;
+	Log(LogSwitch::LCG::Framework) << "worker " << workerId << " starts." << endl;
 
 	ID stationNumber = input.gasstations_size();
 	ID vehicleNumber = input.vehicles_size();
@@ -320,7 +320,7 @@ bool Solver::optimize(Solution &sln, ID workerId) {
 		}
 	}
 
-	Log(LogSwitch::Szx::Framework) << "worker " << workerId << " ends." << endl;
+	Log(LogSwitch::LCG::Framework) << "worker " << workerId << " ends." << endl;
 	return status;
 }
 #pragma endregion Solver

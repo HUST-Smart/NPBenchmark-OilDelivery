@@ -4,8 +4,8 @@
 /// note  : 1.	
 ////////////////////////////////
 
-#ifndef SMART_SZX_GATE_ASSIGNMENT_VISUALIZER_H
-#define SMART_SZX_GATE_ASSIGNMENT_VISUALIZER_H
+#ifndef SMART_LCG_OIL_DELIVERY_VISUALIZER_H
+#define SMART_LCG_OIL_DELIVERY_VISUALIZER_H
 
 
 #include <algorithm>
@@ -16,7 +16,7 @@
 #include <cstdlib>
 
 
-namespace szx {
+namespace lcg {
 
 struct RandColor {
     static constexpr auto ColorCodeChar = "0123456789ABCDEF";
@@ -130,4 +130,4 @@ struct Drawer {
 }
 
 
-#endif // SMART_SZX_GATE_ASSIGNMENT_VISUALIZER_H
+#endif // SMART_LCG_OIL_DELIVERY_VISUALIZER_H

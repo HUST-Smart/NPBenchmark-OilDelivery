@@ -11,10 +11,10 @@
 
 
 using namespace std;
-using namespace szx;
+using namespace lcg;
 using namespace pb;
 
-#define PERIODNUM 4
+const int PERIODNUM = 4;
 
 
 

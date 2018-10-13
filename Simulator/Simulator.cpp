@@ -16,7 +16,7 @@
 using namespace std;
 
 
-namespace szx {
+namespace lcg {
 
 void Simulator::initDefaultEnvironment() {
     Solver::Environment env;
@@ -99,7 +99,7 @@ void Simulator::run(const String &envPath) {
 void Simulator::debug() {
     Task task;
     task.instSet = "";
-    task.instId = "rand.p4s83v6";
+    task.instId = "rand.p4s24v3";
     task.randSeed = "1500972793";
     //task.randSeed = to_string(RandSeed::generate());
     task.timeout = "180";
@@ -125,8 +125,8 @@ void Simulator::benchmark(int repeat) {
 
     random_device rd;
     mt19937 rgen(rd());
-    // EXTEND[szx][5]: read it from InstanceList.txt.
-    vector<String> instList({ "rand.p4s24v3", "rand.p4s86v6" });
+    // EXTEND[lcg][5]: read it from InstanceList.txt.
+    vector<String> instList({ "rand.p4s24v3", "rand.p4s83v6" });
     for (int i = 0; i < repeat; ++i) {
         //shuffle(instList.begin(), instList.end(), rgen);
         for (auto inst = instList.begin(); inst != instList.end(); ++inst) {
@@ -153,8 +153,8 @@ void Simulator::parallelBenchmark(int repeat) {
 
     random_device rd;
     mt19937 rgen(rd());
-    // EXTEND[szx][5]: read it from InstanceList.txt.
-    vector<String> instList({ "rand.p4s24v3", "rand.p4s86v6" });
+    // EXTEND[lcg][5]: read it from InstanceList.txt.
+    vector<String> instList({ "rand.p4s24v3", "rand.p4s83v6" });
     for (int i = 0; i < repeat; ++i) {
         //shuffle(instList.begin(), instList.end(), rgen);
         for (auto inst = instList.begin(); inst != instList.end(); ++inst) {

@@ -14,7 +14,7 @@
 #include <string>
 
 
-namespace szx {
+namespace lcg {
 
 // zero-based consecutive integer identifier.
 using ID = int;
